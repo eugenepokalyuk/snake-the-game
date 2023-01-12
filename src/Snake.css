@@ -1,22 +1,33 @@
-.snake-dot {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: #00FF00;
-    border-radius: 50%;
-}
-.food-dot {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: #FF0000;
-    border-radius: 50%;
-}
 .game-area {
     position: relative;
-    width: 400px;
-    height: 400px;
-    /* background-color: #000000; */
-    margin: 20px auto;
-    border: 2px solid #000;
+    width: 100%;
+    height: 100%;
+    background: lightcoral;
+}
+.snake-dot:nth-child(1n) {
+    background-color: #00ff00;
+}
+.snake-dot:nth-child(2n) {
+    background-color: #00e300;
+}
+
+.snake-dot:first-child {
+    background-color: #00ff00a0;
+}
+
+.snake-dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    /* background-color: #00FF00; */
+}
+
+.food-dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    /* background-color: red; */
+    background-image: url('https://static.vecteezy.com/system/resources/previews/013/743/158/original/apple-pixel-art-png.png');
+    background-size: cover;
+    border-radius: 100px;
 }

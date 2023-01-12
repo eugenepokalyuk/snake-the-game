@@ -2,160 +2,121 @@ import React, { useState, useEffect } from 'react';
 import './Snake.css';
 
 const Snake = () => {
-    // state to hold the position of each segment of the snake on the game board
-    const [snakeDots, setSnakeDots] = useState([[0, 0]]);
-    // state to hold the pos of food on the game board
-    const [food, setFood] = useState([10, 10]);
-    // state to hold the current direction of the snake
+    const [snakeDots, setSnakeDots] = useState([[0, 0], [2, 0], [4, 0], [6, 0], [8, 0], [10, 0]]);
+    // const [snakeDots, setSnakeDots] = useState([[0, 0], [2, 0]]);
+    const [foodDot, setFoodDot] = useState([10, 10]);
     const [direction, setDirection] = useState('RIGHT');
+    const [speed, setSpeed] = useState(100);
+    const [gameOver, setGameOver] = useState(false);
 
-    // move the snake in the current direction
-    const moveSnake = (direction) => {
+    useEffect(() => {
+        document.onkeydown = (e) => {
+            e = e || window.event;
+            switch (e.keyCode) {
+                case 38:
+                    setDirection('UP');
+                    break;
+                case 40:
+                    setDirection('DOWN');
+                    break;
+                case 37:
+                    setDirection('LEFT');
+                    break;
+                case 39:
+                    setDirection('RIGHT');
+                    break;
+            }
+        };
+        const intervalId = setInterval(() => {
+            move();
+            checkCollision();
+        }, speed);
+        // setFood();
+        return () => clearInterval(intervalId);
+    }, [direction ,speed]);
+
+    const move = () => {
         let dots = [...snakeDots];
         let head = dots[dots.length - 1];
 
         switch (direction) {
-            case 'RIGHT':
-                head = [head[0], head[1] + 1]
-                break;
-            case 'LEFT':
-                head = [head[0], head[1] - 1]
-                break;
-            case 'UP':
-                head = [head[0] - 1, head[1]]
-                break;
-            case 'DOWN':
-                head = [head[0] + 1, head[1]]
-                break;
-            default:
+          case 'RIGHT':
+            head = [head[0] + 2, head[1]];
+            break;
+          case 'LEFT':
+            head = [head[0] - 2, head[1]];
+            break;
+          case 'DOWN':
+            head = [head[0], head[1] + 2];
+            break;
+          case 'UP':
+            head = [head[0], head[1] - 2];
+            break;
         }
-
-        // update snake pos by removing the first element and adding new head
+        if (head[0] >= 100) head[0] = 0;
+        if (head[1] >= 100) head[1] = 0;
+        if (head[0] < 0) head[0] = 100;
+        if (head[1] < 0) head[1] = 100;
         dots.push(head);
         dots.shift();
         setSnakeDots(dots);
-    }
+        eatFood();
+      };
 
-    const checkItOutOfBorders = () => {
-        let dots = [...snakeDots];
-        let head = dots[dots.length - 1];
+    const checkCollision = () => {
+        let snake = [...snakeDots];
+        let head = snake[snake.length - 1];
+        snake.pop();
+        snake.forEach(dot => {
+          if (head[0] === dot[0] && head[1] === dot[1]) {
+            setSnakeDots([[0,0], [2,0]]);
+            setDirection('RIGHT');
+            setFoodDot([10,10]);
+          }
+        });
+      };
 
-        if (head[0] >= 100 || head[1] >= 100 || head[0] < 0 || head[1] < 0) {
-            alert('Game over - checkItOutOfBorders')
-        }
-    }
-
-    const checkItCollapsed = () => {
-        let dots = [...snakeDots];
-        let head = dots[dots.length - 1];
-        dots.pop();
-        dots.forEach(dot => {
-            if (head[0] === dot[0] && head[1] === dot[1]) {
-                alert('Game over - checkItCollapsed')
+    const setFood = () => {
+        if (gameOver) return;
+        let food = [randomNum(), randomNum()];
+        let snake = [...snakeDots];
+        snake.forEach(dot => {
+            if (food[0] === dot[0] && food[1] === dot[1]) {
+                food = [randomNum(), randomNum()];
             }
         });
-    }
+        setFoodDot(food);
+    };
 
-    const checkIfEat = () => {
-        let dots = [...snakeDots];
-        let head = dots[dots.length - 1];
+    const randomNum = () => {
+        return Math.floor(Math.random() * 100 / 2) * 2;
+    };
+
+    const increaseSpeed = () => {
+        if (speed > 10) {
+            setSpeed(speed - 10);
+        }
+    };
+
+    const eatFood = () => {
+        if (gameOver) return;
+        let snake = [...snakeDots];
+        let head = snake[snake.length - 1];
+        let food = [...foodDot];
         if (head[0] === food[0] && head[1] === food[1]) {
-            setFood(genRandomCoordinates());
-            expandSnake();
+            setFood();
+            increaseSpeed();
+            snake.unshift([]);
+            setSnakeDots(snake);
         }
-        // let head = snakeDots[snakeDots.length - 1];
-        // let foodDot = food;
-        // if(head[0] === foodDot[0] && head[1] === foodDot[1]) {
-        //     setFood([Math.floor(Math.random() * 100), Math.floor(Math.random() * 100)])
-        //     growSnake();
-        // }
-    }
-
-    const genRandomCoordinates = () => {
-        let x = Math.floor(Math.random() * 100);
-        let y = Math.floor(Math.random() * 100);
-        return [x, y];
-    }
-
-    const expandSnake = () => {
-        let newSnake = [...snakeDots];
-        newSnake.unshift([]);
-        setSnakeDots(newSnake);
-    }
-
-    const move = {
-        left: () => {
-            setDirection('LEFT')
-        },
-        right: () => {
-            setDirection('RIGHT')
-        },
-        up: () => {
-            setDirection('UP')
-        },
-        down: () => {
-            setDirection('DWON')
-        }
-    }
-
-    const onKeyDown = (e) => {
-        e = e || window.event;
-        switch (e.keyCode) {
-            case 39:
-                move.right();
-                break;
-            case 37:
-                move.left();
-                break;
-            case 38:
-                move.up();
-                break;
-            case 40:
-                move.down();
-                break;
-            default:
-        }
-    }
-
-    // useEffect(() => {
-    //     document.onkeydown = onKeyDown;
-    //     setInterval(() => {
-    //         moveSnake(direction);
-    //         checkItOutOfBorders();
-    //         checkItCollapsed();
-    //         checkIfEat();
-    //     }, 1);
-    // }, [direction]);
-
-    useEffect(() => {
-        document.onkeydown = onKeyDown;
-        setInterval(moveSnake, 100, direction);
-        setInterval(checkItOutOfBorders, 100);
-        setInterval(checkItCollapsed, 100);
-        setInterval(checkIfEat, 100);
-    }, [snakeDots, direction])
+    };
 
     return (
-        <div className='game-area'>
+        <div className="game-area">
             {snakeDots.map((dot, i) => {
-                return (
-                    <div
-                        className='snake-dot'
-                        key={i}
-                        style={{
-                            top: `${dot[0]}%`,
-                            left: `${dot[1]}%`,
-                        }}>
-                    </div>
-                )
+                return <div className="snake-dot" key={i} style={{ left: `${dot[0]}%`, top: `${dot[1]}%` }}></div>
             })}
-            <div
-                className='food-dot'
-                style={{
-                    top: `${food[0]}%`,
-                    left: `${food[1]}%`,
-                }}>
-            </div>
+            <div className="food-dot" style={{ left: `${foodDot[0]}%`, top: `${foodDot[1]}%` }}></div>
         </div>
     )
 }
