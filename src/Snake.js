@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './Snake.css';
 
 const Snake = () => {
-    const [snakeDots, setSnakeDots] = useState([[0, 0], [2, 0], [4, 0], [6, 0], [8, 0], [10, 0]]);
-    // const [snakeDots, setSnakeDots] = useState([[0, 0], [2, 0]]);
+    const snakeSize = 2.5
+    const [snakeDots, setSnakeDots] = useState([[0, 0], [snakeSize, 0]]);
     const [foodDot, setFoodDot] = useState([10, 10]);
     const [direction, setDirection] = useState('RIGHT');
     const [speed, setSpeed] = useState(100);
@@ -41,16 +41,16 @@ const Snake = () => {
 
         switch (direction) {
           case 'RIGHT':
-            head = [head[0] + 2, head[1]];
+            head = [head[0] + snakeSize, head[1]];
             break;
           case 'LEFT':
-            head = [head[0] - 2, head[1]];
+            head = [head[0] - snakeSize, head[1]];
             break;
           case 'DOWN':
-            head = [head[0], head[1] + 2];
+            head = [head[0], head[1] + snakeSize];
             break;
           case 'UP':
-            head = [head[0], head[1] - 2];
+            head = [head[0], head[1] - snakeSize];
             break;
         }
         if (head[0] >= 100) head[0] = 0;
@@ -69,7 +69,7 @@ const Snake = () => {
         snake.pop();
         snake.forEach(dot => {
           if (head[0] === dot[0] && head[1] === dot[1]) {
-            setSnakeDots([[0,0], [2,0]]);
+            setSnakeDots([[0,0], [snakeSize,0]]);
             setDirection('RIGHT');
             setFoodDot([10,10]);
           }
@@ -89,7 +89,7 @@ const Snake = () => {
     };
 
     const randomNum = () => {
-        return Math.floor(Math.random() * 100 / 2) * 2;
+        return Math.floor(Math.random() * 100 / snakeSize) * snakeSize;
     };
 
     const increaseSpeed = () => {

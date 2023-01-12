@@ -10,24 +10,22 @@
 .snake-dot:nth-child(2n) {
     background-color: #00e300;
 }
-
 .snake-dot:first-child {
     background-color: #00ff00a0;
 }
 
 .snake-dot {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    /* background-color: #00FF00; */
+    width: 2.5%;
+    height: 2.5%;
+    border-radius: 20%;
 }
 
 .food-dot {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    /* background-color: red; */
+    width: 2.5%;
+    height: 2.5%;
     background-image: url('https://static.vecteezy.com/system/resources/previews/013/743/158/original/apple-pixel-art-png.png');
-    background-size: cover;
+    background-size: contain;
     border-radius: 100px;
 }
