@@ -1,8 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
 .game-area {
     position: relative;
-    width: 100%;
-    height: 100%;
-    background: lightcoral;
+    width: 80%;
+    height: 80%;
+    background: darkgreen;
+    /* background: url('https://i.pinimg.com/originals/51/64/23/516423d8a2d73309efba8f221ab7740c.png'); */
+    /* background-size: cover; */
+    filter: grayscale(40%);
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 .snake-dot:nth-child(1n) {
     background-color: #00ff00;
@@ -12,6 +19,11 @@
 }
 .snake-dot:first-child {
     background-color: #00ff00a0;
+}
+
+.snake-head {
+    background-color: red !important;
+    border-radius: 50%;
 }
 
 .snake-dot {
@@ -25,7 +37,19 @@
     position: absolute;
     width: 2.5%;
     height: 2.5%;
-    background-image: url('https://static.vecteezy.com/system/resources/previews/013/743/158/original/apple-pixel-art-png.png');
+    /* scale: 2.5; */
+    /* background-image: url('https://static.vecteezy.com/system/resources/previews/013/743/158/original/apple-pixel-art-png.png'); */
+    background-image: url('https://lh3.googleusercontent.com/JYUzZNa6isr_t-Xu48qCWBYfOgqEzxISSq5rgIr996xOhmM7t3UkJFiHm5NYD5KrguBDnLFpbXHV2UzpifEoJw');
     background-size: contain;
     border-radius: 100px;
+}
+
+h1, p {
+    font-family: 'Ubuntu', sans-serif;
+    color: snow;
+}
+
+.game-info .row {
+    display: flex;
+    justify-content: space-around;
 }
