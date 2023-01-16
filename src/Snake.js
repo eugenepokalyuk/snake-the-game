@@ -107,7 +107,7 @@ const Snake = () => {
 
     const increaseSpeed = () => {
         if (speed > 10) {
-            setSpeed(speed - 2.5);
+            setSpeed(speed - 0.5);
         }
     };
 

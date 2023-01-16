@@ -1,16 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-
 :root {
     --block-size: 5%;
 }
-
 .game-area {
     position: relative;
     width: 80%;
     height: 80%;
     background: darkgreen;
-    /* background: url('https://i.pinimg.com/originals/51/64/23/516423d8a2d73309efba8f221ab7740c.png'); */
-    /* background-size: cover; */
     filter: grayscale(40%);
     overflow-y: hidden;
     overflow-x: hidden;
@@ -24,35 +20,29 @@
 .snake-dot:first-child {
     background-color: #00ff00a0;
 }
-
 .snake-head {
     background-color:#59ff00 !important;
-    border-radius: 50%;
+    /* background-color:#000 !important; */
 }
-
 .snake-dot {
     position: absolute;
     width: var(--block-size);
     height: var(--block-size);
     border-radius: 20%;
 }
-
 .food-dot {
     position: absolute;
     width: var(--block-size);
     height: var(--block-size);
 
-    /* background-color: crimson; */
     background-image: url('https://lh3.googleusercontent.com/JYUzZNa6isr_t-Xu48qCWBYfOgqEzxISSq5rgIr996xOhmM7t3UkJFiHm5NYD5KrguBDnLFpbXHV2UzpifEoJw');
     background-size: contain;
     border-radius: 100px;
 }
-
 h1, p {
     font-family: 'Ubuntu', sans-serif;
     color: snow;
 }
-
 .game-info .row {
     display: flex;
     justify-content: space-around;
