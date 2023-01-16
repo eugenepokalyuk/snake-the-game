@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/snake-the-game/static/css/main.18a47085.css",
-    "main.js": "/snake-the-game/static/js/main.f21ec4ed.js",
+    "main.css": "/snake-the-game/static/css/main.ede3c6c0.css",
+    "main.js": "/snake-the-game/static/js/main.eaa9844b.js",
     "index.html": "/snake-the-game/index.html",
-    "main.18a47085.css.map": "/snake-the-game/static/css/main.18a47085.css.map",
-    "main.f21ec4ed.js.map": "/snake-the-game/static/js/main.f21ec4ed.js.map"
+    "main.ede3c6c0.css.map": "/snake-the-game/static/css/main.ede3c6c0.css.map",
+    "main.eaa9844b.js.map": "/snake-the-game/static/js/main.eaa9844b.js.map"
   },
   "entrypoints": [
-    "static/css/main.18a47085.css",
-    "static/js/main.f21ec4ed.js"
+    "static/css/main.ede3c6c0.css",
+    "static/js/main.eaa9844b.js"
   ]
 }
