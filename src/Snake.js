@@ -17,20 +17,21 @@ const Snake = () => {
         let head = dots[dots.length - 1];
 
         switch (direction) {
-          case 'RIGHT':
-            head = [head[0] + snakeSize, head[1]];
-            break;
-          case 'LEFT':
-            head = [head[0] - snakeSize, head[1]];
-            break;
-          case 'DOWN':
-            head = [head[0], head[1] + snakeSize];
-            break;
-          case 'UP':
-            head = [head[0], head[1] - snakeSize];
-            break;
+            case 'RIGHT':
+                // if(direction == "LEFT")
+                head = [head[0] + snakeSize, head[1]];
+                break;
+            case 'LEFT':
+                head = [head[0] - snakeSize, head[1]];
+                break;
+            case 'DOWN':
+                head = [head[0], head[1] + snakeSize];
+                break;
+            case 'UP':
+                head = [head[0], head[1] - snakeSize];
+                break;
         }
-        
+
         if (head[0] >= 100) head[0] = 0;
         if (head[1] >= 100) head[1] = 0;
         if (head[0] < 0) head[0] = 100;
@@ -40,7 +41,7 @@ const Snake = () => {
         dots.shift();
         setSnakeDots(dots);
         eatFood();
-      };
+    };
 
     useEffect(() => {
         document.onkeydown = (e) => {
@@ -61,7 +62,7 @@ const Snake = () => {
             }
         };
 
-        if(!gameOver) {
+        if (!gameOver) {
             const intervalId = setInterval(() => {
                 move();
                 checkCollision();
@@ -70,22 +71,22 @@ const Snake = () => {
             return () => clearInterval(intervalId);
         }
 
-    }, [direction ,speed, move]);
+    }, [direction, speed, move]);
 
     const checkCollision = () => {
         let snake = [...snakeDots];
         let head = snake[snake.length - 1];
         snake.pop();
         snake.forEach(dot => {
-          if (head[0] === dot[0] && head[1] === dot[1]) {
-            setSnakeDots([[0,0], [snakeSize,0]]);
-            setDirection('RIGHT');
-            setFoodDot([10,10]);
-            updateScore(0);
-            setSpeed(100);
-          }
+            if (head[0] === dot[0] && head[1] === dot[1]) {
+                setSnakeDots([[0, 0], [snakeSize, 0]]);
+                setDirection('RIGHT');
+                setFoodDot([10, 10]);
+                updateScore(0);
+                setSpeed(100);
+            }
         });
-      };
+    };
 
     const setFood = () => {
         if (gameOver) return
@@ -140,25 +141,25 @@ const Snake = () => {
 
     return (
         <>
-        <div>
-            <div className='game-info'>
-                <div className='row'>
-                    <h1>Snake The Game</h1>
+            <div>
+                <div className='game-info'>
+                    <div className='row'>
+                        <h1>Snake The Game</h1>
+                    </div>
+                    <div className='row'>
+                        <p>Score: {score}</p>
+                        <p>High Score: {localStorage.getItem("highScore")}</p>
+                        <p>Speed: {100 - speed}</p>
+                    </div>
                 </div>
-                <div className='row'>
-                    <p>Score: {score}</p>
-                    <p>High Score: {localStorage.getItem("highScore")}</p>
-                    <p>Speed: {100 - speed}</p>
-                </div>
+
             </div>
-            
-        </div>
-        <div className="game-area" style={{ margin: "0 auto" }}>
-            {snakeDots.map((dot, i) => {
-                return <div className={`snake-dot ${i === snakeDots.length - 1 ? 'snake-head' : ''}`} key={i} style={{ left: `${dot[0]}%`, top: `${dot[1]}%` }}></div>
-            })}
-            <div className="food-dot" style={{ left: `${foodDot[0]}%`, top: `${foodDot[1]}%` }}></div>
-        </div>
+            <div className="game-area" style={{ margin: "0 auto" }}>
+                {snakeDots.map((dot, i) => {
+                    return <div className={`snake-dot ${i === snakeDots.length - 1 ? 'snake-head' : ''}`} key={i} style={{ left: `${dot[0]}%`, top: `${dot[1]}%` }}></div>
+                })}
+                <div className="food-dot" style={{ left: `${foodDot[0]}%`, top: `${foodDot[1]}%` }}></div>
+            </div>
         </>
     )
 }
