@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './Snake.css';
 
 const Snake = () => {
-    const snakeSize = 2.5
+    const snakeSize = 5;
+    // const snakeSize = 2.5;
     const [score, updateScore] = useState(0);
     const [highScore, setHighScore] = useState(0);
     const [snakeDots, setSnakeDots] = useState([[0, 0], [snakeSize, 0]]);
@@ -155,7 +156,6 @@ const Snake = () => {
         <div className="game-area" style={{ margin: "0 auto" }}>
             {snakeDots.map((dot, i) => {
                 return <div className={`snake-dot ${i === snakeDots.length - 1 ? 'snake-head' : ''}`} key={i} style={{ left: `${dot[0]}%`, top: `${dot[1]}%` }}></div>
-                // <div className="snake-dot" key={i} style={{ left: `${dot[0]}%`, top: `${dot[1]}%` }}></div>
             })}
             <div className="food-dot" style={{ left: `${foodDot[0]}%`, top: `${foodDot[1]}%` }}></div>
         </div>

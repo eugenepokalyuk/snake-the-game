@@ -28,17 +28,22 @@
 
 .snake-dot {
     position: absolute;
-    width: 2.5%;
-    height: 2.5%;
+    /* width: 2.5%; */
+    width: 5%;
+    /* height: 2.5%; */
+    height: 5%;
     border-radius: 20%;
 }
 
 .food-dot {
     position: absolute;
-    width: 2.5%;
-    height: 2.5%;
+    /* width: 2.5%; */
+    width: 5%;
+    /* height: 2.5%; */
+    height: 5%;
     /* scale: 2.5; */
-    /* background-image: url('https://static.vecteezy.com/system/resources/previews/013/743/158/original/apple-pixel-art-png.png'); */
+
+    /* background-color: crimson; */
     background-image: url('https://lh3.googleusercontent.com/JYUzZNa6isr_t-Xu48qCWBYfOgqEzxISSq5rgIr996xOhmM7t3UkJFiHm5NYD5KrguBDnLFpbXHV2UzpifEoJw');
     background-size: contain;
     border-radius: 100px;
