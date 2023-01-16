@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
+:root {
+    --block-size: 5%;
+}
+
 .game-area {
     position: relative;
     width: 80%;
@@ -28,20 +32,15 @@
 
 .snake-dot {
     position: absolute;
-    /* width: 2.5%; */
-    width: 5%;
-    /* height: 2.5%; */
-    height: 5%;
+    width: var(--block-size);
+    height: var(--block-size);
     border-radius: 20%;
 }
 
 .food-dot {
     position: absolute;
-    /* width: 2.5%; */
-    width: 5%;
-    /* height: 2.5%; */
-    height: 5%;
-    /* scale: 2.5; */
+    width: var(--block-size);
+    height: var(--block-size);
 
     /* background-color: crimson; */
     background-image: url('https://lh3.googleusercontent.com/JYUzZNa6isr_t-Xu48qCWBYfOgqEzxISSq5rgIr996xOhmM7t3UkJFiHm5NYD5KrguBDnLFpbXHV2UzpifEoJw');

@@ -3,7 +3,7 @@ import './Snake.css';
 
 const Snake = () => {
     const snakeSize = 5;
-    // const snakeSize = 2.5;
+
     const [score, updateScore] = useState(0);
     const [highScore, setHighScore] = useState(0);
     const [snakeDots, setSnakeDots] = useState([[0, 0], [snakeSize, 0]]);
